@@ -1,5 +1,5 @@
 module Reporting
-  class FieldType < ActiveRecord::Base
+  class FilterType < ActiveRecord::Base
     has_many :field
   end
 end

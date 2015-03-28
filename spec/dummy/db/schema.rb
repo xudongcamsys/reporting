@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328212122) do
+ActiveRecord::Schema.define(version: 20150328224244) do
 
   create_table "reporting_fields", force: :cascade do |t|
     t.integer  "report_id",       null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150328212122) do
     t.integer  "filter_type_id",  null: false
     t.integer  "lookup_table_id"
     t.string   "name",            null: false
-    t.string   "alias"
+    t.string   "title"
     t.boolean  "is_filterable"
     t.boolean  "is_output"
     t.boolean  "is_validate"
@@ -33,13 +33,13 @@ ActiveRecord::Schema.define(version: 20150328212122) do
   add_index "reporting_fields", ["report_id"], name: "index_reporting_fields_on_report_id"
 
   create_table "reporting_filter_groups", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "reporting_filter_types", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.string   "partial"
     t.string   "formatter"
     t.datetime "created_at", null: false
@@ -47,16 +47,16 @@ ActiveRecord::Schema.define(version: 20150328212122) do
   end
 
   create_table "reporting_lookup_tables", force: :cascade do |t|
-    t.string   "name"
-    t.string   "display_field_name"
+    t.string   "name",               null: false
+    t.string   "display_field_name", null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
   create_table "reporting_reports", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        null: false
     t.string   "description"
-    t.string   "data_source"
+    t.string   "data_source", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

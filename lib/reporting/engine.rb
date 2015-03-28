@@ -1,3 +1,5 @@
+require 'haml-rails'
+
 module Reporting
   class Engine < ::Rails::Engine
     isolate_namespace Reporting

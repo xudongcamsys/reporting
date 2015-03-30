@@ -1,5 +1,5 @@
 module Reporting
   class LookupTable < ActiveRecord::Base
-    has_many :field
+    has_many :fields
   end
 end

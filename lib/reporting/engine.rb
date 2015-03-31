@@ -1,4 +1,5 @@
 require 'haml-rails'
+require 'ransack'
 
 module Reporting
   class Engine < ::Rails::Engine

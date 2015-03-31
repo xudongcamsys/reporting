@@ -1,6 +1,7 @@
 - filter_groups ||= []
 - if report && report.data_model
   = search_form_for report.data_model.ransack(params[:q]), :url => "#{report_results_path(report)}", method: :post do |f|
+  
     - filter_groups.each do |filter_group|
       = render partial: 'reporting/filters/filter_group', locals: {filter_group: filter_group, search_form: f}
 

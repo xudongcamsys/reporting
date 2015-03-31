@@ -4,15 +4,20 @@
   - fields = filter_group.fields.where(report: report)
   - fields.each do |field|
     - next if !field.is_filterable
-    - if field.filter_type.name == 'range'
-      %div
-        = search_form.label "#{field.title}" rescue nil
-        = search_form.search_field "#{field.name}_lteq" rescue nil
-        = "-"
-        = search_form.search_field "#{field.name}_gteq" rescue nil
+    - if !field.lookup_table
+      - if field.filter_type.name == 'range'
+        %div
+          = search_form.label "#{field.title}" rescue nil
+          = search_form.search_field "#{field.name}_lteq" rescue nil
+          = "-"
+          = search_form.search_field "#{field.name}_gteq" rescue nil
+      - else
+        %div
+          = search_form.label "#{field.name}_#{field.filter_type.name}" rescue nil
+          = search_form.search_field "#{field.name}_#{field.filter_type.name}" rescue nil
     - else
       %div
-        = search_form.label "#{field.name}_#{field.filter_type.name}" rescue nil
-        = search_form.search_field "#{field.name}_#{field.filter_type.name}" rescue nil
+        = search_form.label "#{field.title}" rescue nil
+        = search_form.collection_select "#{field.name}_eq", field.lookup_table.data_model.all, :id, "#{field.lookup_table.display_field_name}", include_blank: true
 
 

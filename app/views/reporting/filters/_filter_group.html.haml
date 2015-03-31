@@ -1,7 +1,18 @@
 - if filter_group && search_form
   %h5
     = filter_group.name
-  - filter_group.fields.each do |field|
-    = search_form.label "#{field.name}_eq" rescue nil
-    = search_form.search_field "#{field.name}_eq" rescue nil
+  - fields = filter_group.fields.where(report: report)
+  - fields.each do |field|
+    - next if !field.is_filterable
+    - if field.filter_type.name == 'range'
+      %div
+        = search_form.label "#{field.title}" rescue nil
+        = search_form.search_field "#{field.name}_lteq" rescue nil
+        = "-"
+        = search_form.search_field "#{field.name}_gteq" rescue nil
+    - else
+      %div
+        = search_form.label "#{field.name}_#{field.filter_type.name}" rescue nil
+        = search_form.search_field "#{field.name}_#{field.filter_type.name}" rescue nil
+
 

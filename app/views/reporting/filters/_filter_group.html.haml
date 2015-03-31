@@ -1,0 +1,7 @@
+- if filter_group && search_form
+  %h5
+    = filter_group.name
+  - filter_group.fields.each do |field|
+    = search_form.label "#{field.name}_eq" rescue nil
+    = search_form.search_field "#{field.name}_eq" rescue nil
+

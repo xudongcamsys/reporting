@@ -1,2 +1,3 @@
 %h1
-  = "Reports #{@reports.count}"
+  Report Parameters
+= render partial: 'list', locals: {reports: @reports}

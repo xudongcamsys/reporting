@@ -1,0 +1,13 @@
+%h4
+  Report Name
+- report_id = report_id || 0
+%select.reporting-reports-list{onChange:"window.location.href=this.value"}
+  - reports.each do |report|
+    - if report.id == report_id
+      %option{value: "#{report_path(report)}", selected: true}
+        = report.name
+    - else
+      %option{value: "#{report_path(report)}"}
+        = report.name
+
+  

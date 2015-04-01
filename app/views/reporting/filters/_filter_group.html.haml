@@ -1,7 +1,7 @@
 - if filter_group && search_form
   %h5
     = filter_group.name
-  - fields = filter_group.fields.where(report: report)
+  - fields = filter_group.filter_fields.where(report: report)
   - fields.each do |field|
     - next if !field.is_filterable
     - if !field.lookup_table

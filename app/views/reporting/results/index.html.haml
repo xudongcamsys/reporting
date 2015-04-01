@@ -1,3 +1,4 @@
+= link_to 'Export to CSV', report_results_path(@report, params: @params, format: 'csv')
 %table
   %tr
     - @fields.each do |field|

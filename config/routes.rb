@@ -1,5 +1,5 @@
 Reporting::Engine.routes.draw do
   resources :reports, only: [:index, :show] do
-    post 'results' => 'results#show'
+    resources :results, only: [:index]
   end
 end

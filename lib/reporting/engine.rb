@@ -1,5 +1,6 @@
 require 'haml-rails'
 require 'ransack'
+require 'csv'
 
 module Reporting
   class Engine < ::Rails::Engine

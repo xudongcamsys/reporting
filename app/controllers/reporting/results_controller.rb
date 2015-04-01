@@ -2,11 +2,14 @@ require_dependency "reporting/application_controller"
 
 module Reporting
   class ResultsController < ApplicationController
-    def show
+    def index
       @report = Report.find(params[:report_id])
       @q = @report.data_model.ransack(params[:q])
+      @params = {q: params[:q]}
 
-      @fields = @report.fields.where(is_output: true)
+      # TODO: if output_fields is empty, then use .attributes
+      @fields = @report.output_fields
+
       begin
         @results = @q.result
 
@@ -17,6 +20,11 @@ module Reporting
         # error message handling
 
         @results = []
+      end
+
+      respond_to do |format|
+        format.html
+        format.csv { send_data @results.to_csv }
       end
 
     end

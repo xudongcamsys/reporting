@@ -12,7 +12,7 @@ module Reporting
       @report = Report.find(params[:id])
 
       # find out filter_groups
-      @filter_groups = FilterGroup.where(id: @report.fields.pluck(:filter_group_id).uniq)
+      @filter_groups = FilterGroup.where(id: @report.filter_fields.pluck(:filter_group_id).uniq)
     end
     
   end

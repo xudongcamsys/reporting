@@ -12,7 +12,10 @@ module Reporting
       @params = {q: q_param}
 
       begin
-        @results = @q.result.page(page).per(per_page)
+        # total_results is for exporting
+        total_results = @q.result
+        # @results is for html display; only render current page
+        @results = total_results.page(page).per(per_page)
 
         # this is used to test if any sql exception is triggered in querying
         # commen errors: table not found
@@ -30,13 +33,14 @@ module Reporting
       rescue => e
         # error message handling
 
+        total_results = []
         @results = []
         @fields = []
       end
 
       respond_to do |format|
         format.html
-        format.csv { send_data @results.to_csv }
+        format.csv { send_data total_results.to_csv }
       end
 
     end

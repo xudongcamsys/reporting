@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     reporting (0.0.1)
-      haml-rails (~> 0.9)
+      haml-rails
       kaminari
       rails (~> 4.0)
       ransack

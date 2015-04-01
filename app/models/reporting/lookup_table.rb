@@ -2,13 +2,13 @@ module Reporting
   class LookupTable < ActiveRecord::Base
     include Reporting::Modelable
     
-    has_many :fields
+    has_many :filter_fields
 
     validates :name, presence: true
 
     # model name is based on table name
     def data_model_class_name
-      "#{name.classify}"
+      "Reporting::#{name.classify}"
     end
 
     def data_model

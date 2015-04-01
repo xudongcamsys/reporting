@@ -2,7 +2,8 @@ module Reporting
   class Report < ActiveRecord::Base
     include Reporting::Modelable
 
-    has_many :fields
+    has_many :filter_fields
+    has_many :output_fields
 
     validates :name, presence: true
     validates :data_source, presence: true
@@ -13,19 +14,19 @@ module Reporting
     end
 
     def data_model
-      define_data_model data_source, fields
+      define_data_model
     end
 
     private
 
     # define new model for the tables not known to AR
-    def define_data_model(table_name, fields)
+    def define_data_model
 
       # call modelable module method
-      make_a_reporting_model(data_model_class_name, table_name)
+      make_a_reporting_model(data_model_class_name, data_source)
 
       # define customized ransackers
-      fields.each do |field|
+      filter_fields.each do |field|
         field.ransacker
       end
 

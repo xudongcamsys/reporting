@@ -1,5 +1,5 @@
 module Reporting
-  class Field < ActiveRecord::Base
+  class FilterField < ActiveRecord::Base
     belongs_to :report
     belongs_to :filter_group
     belongs_to :filter_type

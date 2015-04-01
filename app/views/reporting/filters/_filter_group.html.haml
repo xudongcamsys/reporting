@@ -3,7 +3,6 @@
     = filter_group.name
   - fields = filter_group.filter_fields.where(report: report)
   - fields.each do |field|
-    - next if !field.is_filterable
     - if !field.lookup_table
       - if field.filter_type.name == 'range'
         %div

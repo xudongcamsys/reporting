@@ -11,26 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328224244) do
+ActiveRecord::Schema.define(version: 20150401145452) do
 
-  create_table "reporting_fields", force: :cascade do |t|
+  create_table "reporting_filter_fields", force: :cascade do |t|
     t.integer  "report_id",       null: false
     t.integer  "filter_group_id", null: false
     t.integer  "filter_type_id",  null: false
     t.integer  "lookup_table_id"
     t.string   "name",            null: false
     t.string   "title"
-    t.boolean  "is_filterable"
-    t.boolean  "is_output"
-    t.boolean  "is_validate"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  add_index "reporting_fields", ["filter_group_id"], name: "index_reporting_fields_on_filter_group_id"
-  add_index "reporting_fields", ["filter_type_id"], name: "index_reporting_fields_on_filter_type_id"
-  add_index "reporting_fields", ["lookup_table_id"], name: "index_reporting_fields_on_lookup_table_id"
-  add_index "reporting_fields", ["report_id"], name: "index_reporting_fields_on_report_id"
+  add_index "reporting_filter_fields", ["filter_group_id"], name: "index_reporting_filter_fields_on_filter_group_id"
+  add_index "reporting_filter_fields", ["filter_type_id"], name: "index_reporting_filter_fields_on_filter_type_id"
+  add_index "reporting_filter_fields", ["lookup_table_id"], name: "index_reporting_filter_fields_on_lookup_table_id"
+  add_index "reporting_filter_fields", ["report_id"], name: "index_reporting_filter_fields_on_report_id"
 
   create_table "reporting_filter_groups", force: :cascade do |t|
     t.string   "name",       null: false
@@ -52,6 +49,16 @@ ActiveRecord::Schema.define(version: 20150328224244) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  create_table "reporting_output_fields", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "title"
+    t.integer  "report_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reporting_output_fields", ["report_id"], name: "index_reporting_output_fields_on_report_id"
 
   create_table "reporting_reports", force: :cascade do |t|
     t.string   "name",        null: false

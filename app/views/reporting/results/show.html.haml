@@ -1,2 +1,10 @@
-- @results.each do |result|
-  = result.name
+%table
+  - @results.each do |result|
+    %tr
+      - @fields.each do |field|
+        %th
+          = (field.title || field.name)
+    %tr
+      - @fields.each do |field|
+        %td
+          = result[field.name.to_sym]

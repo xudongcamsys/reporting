@@ -6,6 +6,7 @@ module Reporting
       @report = Report.find(params[:report_id])
       @q = @report.data_model.ransack(params[:q])
 
+      @fields = @report.fields.where(is_output: true)
       begin
         @results = @q.result
 

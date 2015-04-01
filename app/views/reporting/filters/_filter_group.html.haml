@@ -8,9 +8,9 @@
       - if field.filter_type.name == 'range'
         %div
           = search_form.label "#{field.title}" rescue nil
-          = search_form.search_field "#{field.name}_lteq" rescue nil
-          = "-"
           = search_form.search_field "#{field.name}_gteq" rescue nil
+          = "-"
+          = search_form.search_field "#{field.name}_lteq" rescue nil
       - else
         %div
           = search_form.label "#{field.name}_#{field.filter_type.name}" rescue nil

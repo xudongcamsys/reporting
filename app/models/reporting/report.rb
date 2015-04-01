@@ -1,5 +1,7 @@
 module Reporting
   class Report < ActiveRecord::Base
+    include Reporting::Modelable
+
     has_many :fields
 
     validates :name, presence: true
@@ -19,22 +21,8 @@ module Reporting
     # define new model for the tables not known to AR
     def define_data_model(table_name, fields)
 
-      if !Object.const_defined?(data_model_class_name)
-        klass = Class.new ActiveRecord::Base do 
-
-          # configure table/view name
-          self.table_name = table_name
-
-          # model should be readonly (since this is a reporting tool)
-          def readonly?
-            true
-          end
-
-        end
-
-        # configure new model name
-        Reporting.const_set table_name.classify, klass
-      end
+      # call modelable module method
+      make_a_reporting_model(data_model_class_name, table_name)
 
       # define customized ransackers
       fields.each do |field|

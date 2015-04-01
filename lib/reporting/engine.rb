@@ -3,6 +3,9 @@ require 'ransack'
 
 module Reporting
   class Engine < ::Rails::Engine
+    # Autoload from lib directory
+    config.autoload_paths << File.expand_path('../../', __FILE__)
+    
     isolate_namespace Reporting
 
     config.generators do |g|

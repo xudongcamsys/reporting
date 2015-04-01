@@ -3,10 +3,10 @@
   %tr
     - @fields.each do |field|
       %th
-        = (field.title || field.name)
+        = (field[:title] || field[:name])
         
   - @results.each do |result|
     %tr
       - @fields.each do |field|
         %td
-          = result[field.name.to_sym]
+          = result[field[:name].to_sym]

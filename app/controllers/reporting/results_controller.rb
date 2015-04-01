@@ -3,12 +3,16 @@ require_dependency "reporting/application_controller"
 module Reporting
   class ResultsController < ApplicationController
     def index
-      @report = Report.find(params[:report_id])
-      @q = @report.data_model.ransack(params[:q])
-      @params = {q: params[:q]}
+      q_param = params[:q]
+      page = params[:page]
+      per_page = params[:per_page]
+
+      @report = Report.find params[:report_id]
+      @q = @report.data_model.ransack q_param
+      @params = {q: q_param}
 
       begin
-        @results = @q.result
+        @results = @q.result.page(page).per(per_page)
 
         # this is used to test if any sql exception is triggered in querying
         # commen errors: table not found

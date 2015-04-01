@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails', '~> 4.0'
   s.add_dependency "ransack"
   s.add_dependency "haml-rails", "~> 0.9"
+  s.add_dependency "kaminari"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails", '~>3.2.1'

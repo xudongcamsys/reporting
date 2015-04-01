@@ -1,6 +1,7 @@
 require 'haml-rails'
 require 'ransack'
 require 'csv'
+require 'kaminari'
 
 module Reporting
   class Engine < ::Rails::Engine

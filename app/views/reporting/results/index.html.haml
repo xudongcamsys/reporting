@@ -10,3 +10,5 @@
       - @fields.each do |field|
         %td
           = result[field[:name].to_sym]
+
+= paginate @results

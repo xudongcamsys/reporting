@@ -3,7 +3,7 @@
   %tr
     - @fields.each do |field|
       %th
-        = (field[:title] || field[:name])
+        = sort_link @q, (field[:title] || field[:name])
         
   - @results.each do |result|
     %tr

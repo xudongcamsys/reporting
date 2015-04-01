@@ -1,9 +1,10 @@
 %table
+  %tr
+    - @fields.each do |field|
+      %th
+        = (field.title || field.name)
+        
   - @results.each do |result|
-    %tr
-      - @fields.each do |field|
-        %th
-          = (field.title || field.name)
     %tr
       - @fields.each do |field|
         %td

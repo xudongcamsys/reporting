@@ -4,7 +4,7 @@ module Reporting
     
     has_many :filter_fields
 
-    validates :name, presence: true
+    validates :name, presence: true, :uniqueness => true
 
     # model name is based on table name
     def data_model_class_name

@@ -5,8 +5,8 @@ module Reporting
     has_many :filter_fields
     has_many :output_fields
 
-    validates :name, presence: true
-    validates :data_source, presence: true
+    validates :name, presence: true, :uniqueness => true
+    validates :data_source, presence: true, :uniqueness => true
 
     # model name is based on table name
     def data_model_class_name

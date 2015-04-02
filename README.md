@@ -1,6 +1,9 @@
 # Reporting 
 (WIP)
 
+# TODO
+* Generators for application customization
+
 ## Introduction
 For [1-Click](https://github.com/camsys/oneclick), we need to implement reporting functionality that will allow authorized users to run ad-hoc reports against virtually any dataset, or logical combination of datasets, in the database. 
 

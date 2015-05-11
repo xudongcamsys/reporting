@@ -1,0 +1,9 @@
+= button_tag type: :submit, id: 'runReporting' do
+  Run
+%h1
+  Report Parameters
+
+:javascript
+  $('#runReporting').on('click', function() {
+    $('.filter-form').submit();
+  });

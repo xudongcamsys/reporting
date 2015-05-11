@@ -1,7 +1,6 @@
 class CreateReportingFields < ActiveRecord::Migration
   def change
     create_table :reporting_fields do |t|
-      t.references :report, index: true, foreign_key: true, null: false
       t.references :filter_group, index: true, foreign_key: true, null: false
       t.references :filter_type, index: true, foreign_key: true, null: false
       t.references :lookup_table, index: true, foreign_key: true

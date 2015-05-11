@@ -1,14 +1,36 @@
-= link_to 'Export All (.csv)', report_results_path(@report, params: @params, format: 'csv')
-%table
-  %tr
-    - @fields.each do |field|
-      %th
-        = sort_link @q, (field[:title] || field[:name])
-        
-  - @results.each do |result|
+= render partial: 'header'
+%h2
+  = @report.name
+%p
+  %select#per_page_select
+    - [10, 25, 50, 100].each do |per_page|
+      - if per_page == @per_page.to_i
+        %option{value: "#{per_page}", selected: true}
+          = per_page
+      - else
+        %option{value: "#{per_page}"}
+          = per_page
+  :javascript
+    $('#per_page_select').on('change', function(){
+      var params = #{@params.to_json};
+      params.per_page = $(this).val();
+      window.location.href = "#{report_results_path(@report)}?" + $.param(params);
+    });
+  %span
+    = "records per page"
+%table#datatable
+  %thead
     %tr
       - @fields.each do |field|
-        %td
-          = result[field[:name].to_sym]
+        %th
+          = sort_link @q, (field[:title] || field[:name])
+  %tbody
+    - @results.each do |result|
+      %tr
+        - @fields.each do |field|
+          - field_type = @report.data_model.columns_hash[field[:name].to_s].type rescue nil
+          %td
+            = format_output result[field[:name].to_sym], field_type, field[:formatter]
 
-= paginate @results
+= page_entries_info @results
+= paginate @results, :params => {per_page: @per_page}

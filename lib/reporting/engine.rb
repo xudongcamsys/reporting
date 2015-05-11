@@ -2,6 +2,7 @@ require 'haml-rails'
 require 'ransack'
 require 'csv'
 require 'kaminari'
+require "jquery-rails"
 
 module Reporting
   class Engine < ::Rails::Engine

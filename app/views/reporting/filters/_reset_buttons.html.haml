@@ -3,13 +3,13 @@
 :javascript
   $(document).ready(function(){
     $('.reset-filter-panel').on('click', function() {
-      $(this).parents('.panel-body').find('.form-control').each(function(){
+      $(this).parents('.filter-group').find('.filter-item').each(function(){
         $(this).val('');
       });
     });
 
     $('#resetAllFilters').on('click', function() {
-      $('.filter-form .form-control').each(function(){
+      $('.filter-form .filter-item').each(function(){
         $(this).val('');
       });
     });

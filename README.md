@@ -1,5 +1,4 @@
 # Reporting 
-(WIP)
 
 # TODO
 * Generators for application customization
